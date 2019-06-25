@@ -1,4 +1,4 @@
-package com.demo.thread;
+package com.thread;
 
 import java.math.BigInteger;
 import java.util.List;

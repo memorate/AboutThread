@@ -1,4 +1,4 @@
-package com.demo.thread;
+package com.thread;
 
 import com.runnable.DemoRunnable;
 import org.junit.Before;
