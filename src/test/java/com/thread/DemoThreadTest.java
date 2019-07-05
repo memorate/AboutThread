@@ -9,6 +9,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DemoThreadTest {
@@ -40,5 +42,10 @@ public class DemoThreadTest {
         double end = System.currentTimeMillis();
         BigInteger totalNum = runnable.getTotal();
         System.out.println("current Thread:" + Thread.currentThread().getName() + ", total num:" + totalNum + ", total time:" + (end - start) / 1000 + "s");
+    }
+
+    @Test
+    public void threadPoolTest(){
+        ExecutorService pool = Executors.newFixedThreadPool(3);
     }
 }
