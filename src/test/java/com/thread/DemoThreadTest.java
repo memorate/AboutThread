@@ -1,5 +1,6 @@
 package com.thread;
 
+import com.aboutThread.essential.DemoCallable;
 import com.aboutThread.essential.DemoRunnable;
 import com.aboutThread.essential.DemoThread;
 import org.junit.Before;
@@ -54,6 +55,23 @@ public class DemoThreadTest {
         }
         double end = System.currentTimeMillis();
         BigInteger totalNum = runnable.getTotal();
+        System.out.println("current Thread:" + Thread.currentThread().getName() + ", total num:" + totalNum + ", total time:" + (end - start) / 1000 + "s");
+    }
+
+    @Test
+    public void callableTest(){
+        double start = System.currentTimeMillis();
+        DemoCallable callable = new DemoCallable(integerList);
+        Thread threadOne = new Thread((Runnable) callable);
+        threadOne.setName("ThreadOne");
+        threadOne.start();
+        try {
+            threadOne.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        double end = System.currentTimeMillis();
+        BigInteger totalNum = callable.getTotal();
         System.out.println("current Thread:" + Thread.currentThread().getName() + ", total num:" + totalNum + ", total time:" + (end - start) / 1000 + "s");
     }
 
