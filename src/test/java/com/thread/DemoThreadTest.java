@@ -1,6 +1,7 @@
 package com.thread;
 
-import com.runnable.DemoRunnable;
+import com.aboutThread.essential.DemoRunnable;
+import com.aboutThread.essential.DemoThread;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +20,7 @@ public class DemoThreadTest {
 
     @Before
     public void initiate(){
-        for (int i = 1; i < 10000001; i++) {
+        for (int i = 1; i < 1000001; i++) {
             integerList.add(i);
         }
     }
@@ -28,7 +29,12 @@ public class DemoThreadTest {
     public void threadTest() {
         double start = System.currentTimeMillis();
         DemoThread threadOne = new DemoThread("ThreadOne", integerList);
-        threadOne.run();
+        threadOne.start();
+        try {
+            threadOne.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         double end = System.currentTimeMillis();
         BigInteger totalNum = threadOne.getTotal();
         System.out.println("current Thread:" + Thread.currentThread().getName() + ", total num:" + totalNum + ", total time:" + (end - start) / 1000 + "s");
@@ -38,7 +44,14 @@ public class DemoThreadTest {
     public void runnableTest(){
         double start = System.currentTimeMillis();
         DemoRunnable runnable = new DemoRunnable(integerList);
-        runnable.run();
+        Thread threadOne = new Thread(runnable);
+        threadOne.setName("ThreadOne");
+        threadOne.start();
+        try {
+            threadOne.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         double end = System.currentTimeMillis();
         BigInteger totalNum = runnable.getTotal();
         System.out.println("current Thread:" + Thread.currentThread().getName() + ", total num:" + totalNum + ", total time:" + (end - start) / 1000 + "s");

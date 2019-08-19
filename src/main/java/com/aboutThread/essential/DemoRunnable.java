@@ -1,22 +1,20 @@
-package com.thread;
+package com.aboutThread.essential;
 
 import java.math.BigInteger;
 import java.util.List;
 
-class DemoThread extends Thread{
+public class DemoRunnable implements Runnable {
     List<Integer> integerList = null;
     BigInteger total = BigInteger.ZERO;
-    DemoThread(String threadName, List<Integer> integerList){
-        super(threadName);
+    public DemoRunnable(List<Integer> integerList){
         this.integerList = integerList;
     }
 
-    @Override
     public void run(){
         for(Integer currentNum:integerList){
             total = total.add(BigInteger.valueOf(currentNum));
         }
-        System.out.println("current thread:" + this.getName() + ",subNum:" + total);
+        System.out.println("current thread:" + Thread.currentThread().getName() + ",subNum:" + total);
     }
 
     public BigInteger getTotal(){
