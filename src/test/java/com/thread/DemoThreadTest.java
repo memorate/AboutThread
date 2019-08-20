@@ -28,8 +28,9 @@ public class DemoThreadTest {
 
     @Test
     public void threadTest() {
+        Thread.currentThread().setName("threadTestThread");
         double start = System.currentTimeMillis();
-        DemoThread threadOne = new DemoThread("ThreadOne", integerList);
+        DemoThread threadOne = new DemoThread("ThreadTom", integerList);
         threadOne.start();
         try {
             threadOne.join();
@@ -38,15 +39,16 @@ public class DemoThreadTest {
         }
         double end = System.currentTimeMillis();
         BigInteger totalNum = threadOne.getTotal();
-        System.out.println("current Thread:" + Thread.currentThread().getName() + ", total num:" + totalNum + ", total time:" + (end - start) / 1000 + "s");
+        System.out.println("current Thread name: " + Thread.currentThread().getName() + ", total num: " + totalNum + ", elapse time: " + (end - start) / 1000 + "s");
     }
 
     @Test
     public void runnableTest(){
+        Thread.currentThread().setName("runnableTestThread");
         double start = System.currentTimeMillis();
         DemoRunnable runnable = new DemoRunnable(integerList);
         Thread threadOne = new Thread(runnable);
-        threadOne.setName("ThreadOne");
+        threadOne.setName("ThreadJack");
         threadOne.start();
         try {
             threadOne.join();
@@ -55,11 +57,12 @@ public class DemoThreadTest {
         }
         double end = System.currentTimeMillis();
         BigInteger totalNum = runnable.getTotal();
-        System.out.println("current Thread:" + Thread.currentThread().getName() + ", total num:" + totalNum + ", total time:" + (end - start) / 1000 + "s");
+        System.out.println("current Thread name: " + Thread.currentThread().getName() + ", total num: " + totalNum + ", elapse time: " + (end - start) / 1000 + "s");
     }
 
     @Test
     public void callableTest(){
+        Thread.currentThread().setName("callableTestThread");
         double start = System.currentTimeMillis();
         DemoCallable callable = new DemoCallable(integerList);
         Thread threadOne = new Thread((Runnable) callable);
@@ -72,7 +75,7 @@ public class DemoThreadTest {
         }
         double end = System.currentTimeMillis();
         BigInteger totalNum = callable.getTotal();
-        System.out.println("current Thread:" + Thread.currentThread().getName() + ", total num:" + totalNum + ", total time:" + (end - start) / 1000 + "s");
+        System.out.println("current Thread name: " + Thread.currentThread().getName() + ", total num: " + totalNum + ", elapse time: " + (end - start) / 1000 + "s");
     }
 
     @Test

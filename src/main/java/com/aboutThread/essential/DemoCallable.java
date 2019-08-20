@@ -15,7 +15,7 @@ public class DemoCallable implements Callable {
         for(Integer currentNum:integerList){
             total = total.add(BigInteger.valueOf(currentNum));
         }
-        System.out.println("current thread:" + Thread.currentThread().getName() + ",subNum:" + total);
+        System.out.println("current thread name: " + Thread.currentThread().getName() + ", subNum: " + total);
         return null;
     }
 
