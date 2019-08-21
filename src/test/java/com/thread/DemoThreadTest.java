@@ -4,6 +4,7 @@ import com.aboutThread.essential.DemoCallable;
 import com.aboutThread.essential.DemoRunnable;
 import com.aboutThread.essential.DemoThread;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -21,7 +22,7 @@ public class DemoThreadTest {
 
     @Before
     public void initiate(){
-        for (int i = 1; i < 1000001; i++) {
+        for (int i = 1; i < 1001; i++) {
             integerList.add(i);
         }
     }
@@ -47,11 +48,13 @@ public class DemoThreadTest {
         Thread.currentThread().setName("runnableTestThread");
         double start = System.currentTimeMillis();
         DemoRunnable runnable = new DemoRunnable(integerList);
-        Thread threadOne = new Thread(runnable);
-        threadOne.setName("ThreadJack");
+        Thread threadOne = new Thread(runnable, "ThreadOne");
+        Thread threadTwo = new Thread(runnable, "ThreadTwo");
         threadOne.start();
+        threadTwo.start();
         try {
             threadOne.join();
+            threadTwo.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -61,6 +64,7 @@ public class DemoThreadTest {
     }
 
     @Test
+    @Ignore
     public void callableTest(){
         Thread.currentThread().setName("callableTestThread");
         double start = System.currentTimeMillis();
@@ -79,6 +83,7 @@ public class DemoThreadTest {
     }
 
     @Test
+    @Ignore
     public void threadPoolTest(){
         ExecutorService pool = Executors.newFixedThreadPool(3);
     }

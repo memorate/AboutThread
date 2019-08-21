@@ -11,10 +11,12 @@ public class DemoRunnable implements Runnable {
     }
 
     public void run(){
-        for(Integer currentNum:integerList){
-            total = total.add(BigInteger.valueOf(currentNum));
+        synchronized (this){
+            for(Integer currentNum:integerList){
+                total = total.add(BigInteger.valueOf(currentNum));
+            }
+            System.out.println("current thread name: " + Thread.currentThread().getName() + ", subNum: " + total);
         }
-        System.out.println("current thread name: " + Thread.currentThread().getName() + ", subNum: " + total);
     }
 
     public BigInteger getTotal(){
