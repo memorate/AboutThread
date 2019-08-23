@@ -6,6 +6,7 @@ import java.util.List;
 public class DemoRunnable implements Runnable {
     List<Integer> integerList = null;
     BigInteger total = BigInteger.ZERO;
+    private volatile boolean flag = true;
 
     public DemoRunnable(List<Integer> integerList) {
         this.integerList = integerList;
@@ -14,18 +15,7 @@ public class DemoRunnable implements Runnable {
     public void run() {
         synchronized (this) {
             final String threadName = Thread.currentThread().getName();
-
             Thread countThread = new Thread() {
-                boolean flag = true;
-
-                public boolean isFlag() {
-                    return flag;
-                }
-
-                public void setFlag(boolean flag) {
-                    this.flag = flag;
-                }
-
                 @Override
                 public void run() {
                     while (flag){
@@ -45,11 +35,11 @@ public class DemoRunnable implements Runnable {
                 System.out.println(threadName + " waiting for 5s");
                 countThread.start();
                 this.wait(5000);
+                this.notify();
+                this.flag = false;
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            this.notify();
-
             for (Integer currentNum : integerList) {
                 total = total.add(BigInteger.valueOf(currentNum));
             }
