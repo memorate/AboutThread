@@ -7,6 +7,7 @@ public class DemoRunnable implements Runnable {
     List<Integer> integerList = null;
     BigInteger total = BigInteger.ZERO;
     private volatile boolean flag = true;
+    private String threadName = "";
 
     public DemoRunnable(List<Integer> integerList) {
         this.integerList = integerList;
@@ -14,7 +15,7 @@ public class DemoRunnable implements Runnable {
 
     public void run() {
         synchronized (this) {
-            final String threadName = Thread.currentThread().getName();
+            threadName = Thread.currentThread().getName();
             Thread countThread = new Thread() {
                 @Override
                 public void run() {
