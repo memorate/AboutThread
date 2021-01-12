@@ -1,8 +1,8 @@
-package com.thread;
+package anchor.thread;
 
-import com.aboutThread.essential.DemoCallable;
-import com.aboutThread.essential.DemoRunnable;
-import com.aboutThread.essential.DemoThread;
+import anchor.thread.example.DemoCallable;
+import anchor.thread.example.DemoRunnable;
+import anchor.thread.example.DemoThread;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

@@ -1,22 +1,22 @@
-package com.aboutThread.essential;
+package anchor.thread.example;
 
 import java.math.BigInteger;
 import java.util.List;
-import java.util.concurrent.Callable;
 
-public class DemoCallable implements Callable {
+public class DemoThread extends Thread{
     List<Integer> integerList = null;
     BigInteger total = BigInteger.ZERO;
-    public DemoCallable(List<Integer> integerList) {
+    public DemoThread(String threadName, List<Integer> integerList){
+        super(threadName);
         this.integerList = integerList;
     }
 
-    public Object call() {
+    @Override
+    public void run(){
         for(Integer currentNum:integerList){
             total = total.add(BigInteger.valueOf(currentNum));
         }
         System.out.println("current thread name: " + Thread.currentThread().getName() + ", subNum: " + total);
-        return null;
     }
 
     public BigInteger getTotal(){
