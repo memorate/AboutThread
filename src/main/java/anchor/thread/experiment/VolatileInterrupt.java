@@ -1,5 +1,7 @@
 package anchor.thread.experiment;
 
+import anchor.thread.util.CommonUtil;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -12,26 +14,33 @@ public class VolatileInterrupt {
     private static volatile boolean flag = false;
 
     public static void main(String[] args) throws Exception {
-        Thread thread = new Thread(new CustomThread(), "customThread");
+        System.out.println("pid: " + CommonUtil.getThreadPid());
+        CustomThread thread = new CustomThread("customThread");
         thread.start();
         System.out.println(thread.getName() + "'s state: " + thread.getState().name());
         TimeUnit.SECONDS.sleep(3);
         flag = true;
     }
 
-    static class CustomThread implements Runnable{
+    static class CustomThread extends Thread {
+        public CustomThread(String name) {
+            super(name);
+        }
+
+        @Override
         public void run() {
-            System.out.println(Thread.currentThread().getName() + " start running...");
-            while (true){
+            System.out.println(this.getName() + " start running...");
+            while (true) {
                 try {
-                    System.out.println(Thread.currentThread().getName() + " start sleeping...");
+                    System.out.println(this.getName() + " start sleeping...");
                     TimeUnit.SECONDS.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if (flag){
-                    System.out.println(Thread.currentThread().getName() + " is exiting...");
-                    Thread.currentThread().interrupt();
+                //只有sleep()结束后才能执行if语句
+                if (flag) {
+                    System.out.println(this.getName() + " is exiting...");
+                    this.interrupt();
                     break;
                 }
             }

@@ -1,5 +1,7 @@
 package anchor.thread.experiment;
 
+import anchor.thread.util.CommonUtil;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -8,8 +10,9 @@ import java.util.concurrent.TimeUnit;
  * Thread类中stop()方法会立即终止线程，过于暴力，可能会导致不可预测情况发生，已被Deprecated
  */
 public class Stop {
-    public static void main(String[] args) throws Exception{
-        Thread thread = new Thread(new CustomThread(), "customThread");
+    public static void main(String[] args) throws Exception {
+        System.out.println("pid: " + CommonUtil.getThreadPid());
+        CustomThread thread = new CustomThread("customThread");
         thread.start();
         System.out.println(thread.getName() + "'s state: " + thread.getState().name());
         TimeUnit.SECONDS.sleep(3);
@@ -17,7 +20,12 @@ public class Stop {
         System.out.println(thread.getName() + "'s state: " + thread.getState().name());
     }
 
-    static class CustomThread implements Runnable {
+    static class CustomThread extends Thread {
+        public CustomThread(String name) {
+            super(name);
+        }
+
+        @Override
         public void run() {
             System.out.println(Thread.currentThread().getName() + " start running...");
             while (true) {

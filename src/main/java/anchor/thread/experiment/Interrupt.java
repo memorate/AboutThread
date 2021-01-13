@@ -1,5 +1,7 @@
 package anchor.thread.experiment;
 
+import anchor.thread.util.CommonUtil;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -15,29 +17,35 @@ import java.util.concurrent.TimeUnit;
  */
 public class Interrupt {
     public static void main(String[] args) throws Exception {
-        Thread thread = new Thread(new CustomThread(), "customThread");
+        System.out.println("pid: " + CommonUtil.getThreadPid());
+        CustomThread thread = new CustomThread("customThread");
         thread.start();
         System.out.println(thread.getName() + "'s state: " + thread.getState().name());
         TimeUnit.SECONDS.sleep(3);
         thread.interrupt();
     }
 
-    static class CustomThread implements Runnable {
+    static class CustomThread extends Thread {
+        public CustomThread(String name) {
+            super(name);
+        }
+
+        @Override
         public void run() {
-            System.out.println(Thread.currentThread().getName() + " start running...");
+            System.out.println(this.getName() + " start running...");
             while (true) {
                 try {
                     //线程sleep期间如果调用了interrupt()，会抛InterruptedException异常
                     //并且中断标志会被清除
-                    System.out.println(Thread.currentThread().getName() + " start sleeping...");
+                    System.out.println(this.getName() + " start sleeping...");
                     TimeUnit.SECONDS.sleep(100);
                 } catch (InterruptedException e) {
                     //做补偿处理，再次interrupt
-                    Thread.currentThread().interrupt();
+                    this.interrupt();
                     e.printStackTrace();
                 }
-                if (Thread.currentThread().isInterrupted()){
-                    System.out.println(Thread.currentThread().getName() + " is exiting...");
+                if (this.isInterrupted()){
+                    System.out.println(this.getName() + " is exiting...");
                     break;
                 }
             }
