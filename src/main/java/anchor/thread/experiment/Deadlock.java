@@ -7,9 +7,8 @@ import java.util.concurrent.TimeUnit;
  * @author Anchor
  *
  * 死锁演示
- * 在 TimeUnit.MINUTES.sleep(10); 没结束之前
- *   thread1持有o1的锁，等待o2的锁
- *   thread2持有o2的锁，等待o1的锁
+ *  thread1持有o1的锁，等待o2的锁
+ *  thread2持有o2的锁，等待o1的锁
  */
 public class Deadlock {
     public static void main(String[] args) {
