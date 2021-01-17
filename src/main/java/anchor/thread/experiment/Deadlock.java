@@ -2,7 +2,6 @@ package anchor.thread.experiment;
 
 import anchor.thread.util.CommonUtil;
 
-import java.lang.management.ManagementFactory;
 import java.util.concurrent.TimeUnit;
 
 /**

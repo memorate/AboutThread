@@ -27,10 +27,10 @@ public class Stop {
 
         @Override
         public void run() {
-            System.out.println(Thread.currentThread().getName() + " start running...");
+            System.out.println(this.getName() + " start running...");
             while (true) {
                 try {
-                    System.out.println(Thread.currentThread().getName() + " start sleeping...");
+                    System.out.println(this.getName() + " start sleeping...");
                     TimeUnit.SECONDS.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
