@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="AboutThread" target="1.5" />
+      <module name="AboutThread" target="8" />
       <module name="simple-demo" target="1.5" />
     </bytecodeTargetLevel>
   </component>
