@@ -1,5 +1,7 @@
 package anchor.thread.basis;
 
+import anchor.util.CommonUtil;
+
 /**
  * @author Anchor
  */
@@ -7,6 +9,7 @@ public class Synchronized {
     private int num;
 
     public static void main(String[] args) throws Exception {
+        System.out.println(CommonUtil.getThreadPid());
         Synchronized object = new Synchronized();
         Counter counter1 = new Counter(object, "counter1");
         Counter counter2 = new Counter(object, "counter1");
