@@ -2,6 +2,11 @@
 <project version="4">
   <component name="RemoteRepositoriesConfiguration">
     <remote-repository>
+      <option name="id" value="5_meicloud" />
+      <option name="name" value="meicloud repository" />
+      <option name="url" value="http://nexus.meicloud.com/repository/maven-public/" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="mvnadmin" />
       <option name="name" value="mvnadmin" />
       <option name="url" value="http://repo.spring.io/plugins-release/" />
@@ -10,6 +15,11 @@
       <option name="id" value="central" />
       <option name="name" value="Central Repository" />
       <option name="url" value="https://repo.maven.apache.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="0_midea" />
+      <option name="name" value="midea" />
+      <option name="url" value="http://mvn.midea.com/nexus/content/groups/public" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="mvnadmin" />
@@ -35,6 +45,16 @@
       <option name="id" value="central" />
       <option name="name" value="Central Repository" />
       <option name="url" value="https://maven.aliyun.com/repository/public" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="4_spring-milestones" />
+      <option name="name" value="Spring Milestones" />
+      <option name="url" value="http://maven.springframework.org/milestone/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="3_aliyun" />
+      <option name="name" value="aliyun" />
+      <option name="url" value="http://maven.aliyun.com/nexus/content/groups/public/" />
     </remote-repository>
   </component>
 </project>
