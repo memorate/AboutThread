@@ -1,5 +1,7 @@
 package anchor.thread.condition;
 
+import anchor.util.CommonUtil;
+
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -39,6 +41,7 @@ public class Await {
     final static Condition CONDITION2 = LOCK.newCondition();
 
     public static void main(String[] args) throws InterruptedException {
+        System.out.println("pid: " + CommonUtil.getThreadPid());
         T1 t1 = new T1();
         T2 t2 = new T2();
         t1.start();
