@@ -23,9 +23,7 @@ public class WaitAndNotify {
     }
 
     static class CustomThreadX extends Thread {
-        public CustomThreadX(String name) {
-            super(name);
-        }
+        public CustomThreadX(String name) {super(name);}
 
         @Override
         public void run() {
