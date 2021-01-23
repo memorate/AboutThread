@@ -29,9 +29,7 @@ public class FairLock {
     }
 
     static class CustomThread extends Thread {
-        public CustomThread(String name) {
-            super(name);
-        }
+        public CustomThread(String name) {super(name);}
 
         @Override
         public void run() {
