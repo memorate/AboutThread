@@ -7,7 +7,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * @author Anchor
  */
-public class ReentrantLockUse {
+public class ReentrantLockSample {
     private static int num = 0;
     final static ReentrantLock LOCK = new ReentrantLock();
 

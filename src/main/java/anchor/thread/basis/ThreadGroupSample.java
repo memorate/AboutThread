@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author Anchor
  */
-public class ThreadGroupUse {
+public class ThreadGroupSample {
     public static void main(String[] args) {
         ThreadGroup group = new ThreadGroup("group1");
         CustomThread thread1 = new CustomThread(group, "thread1");
