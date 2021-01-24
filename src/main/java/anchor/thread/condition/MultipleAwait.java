@@ -34,7 +34,7 @@ import java.util.concurrent.locks.ReentrantLock;
  *     a.deadline 表示一个时间点，若此时间点到来之后线程未被唤醒，则会自动醒来。
  *     b.被唤醒时返回 true，自动唤醒时返回 false。
  */
-public class Await {
+public class MultipleAwait {
 
     final static ReentrantLock LOCK = new ReentrantLock();
     final static Condition CONDITION1 = LOCK.newCondition();
