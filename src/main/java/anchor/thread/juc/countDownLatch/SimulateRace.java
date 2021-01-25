@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  * 模拟跑步比赛，有三个选手、一个裁判。
  * 选手就位后等待裁判指令，裁判发令后选手开始比赛，所有选手完成后比赛结束
  *
- * 用两个 CountDownLatch 来模拟裁判和选手。
+ * 用两个 CountDownLatch 分别来模拟裁判和选手。
  *   选手 start() 之后调用 referee.await() 进入等待状态
  *   裁判发令(referee.countDown())后选手开始比赛，每个选手完成后调用 referee.countDown()
  */
