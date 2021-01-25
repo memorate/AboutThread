@@ -50,7 +50,8 @@ public class MultiplePark {
         Thread t2 = new Thread(() -> {
             System.out.println(Thread.currentThread().getName() + " start running...");
             //等待 100 个小时
-            LockSupport.parkUntil(new Logger2(), TimeUnit.HOURS.toNanos(100));
+            long deadLine = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(100);
+            LockSupport.parkUntil(new Logger2(), deadLine);
             System.out.println(Thread.currentThread().getName() + " is exiting...");
         });
         t1.setName("t1");
