@@ -40,6 +40,7 @@ public class MultiplePark {
 
     public static void main(String[] args) throws InterruptedException {
         System.out.println("pid: " + CommonUtil.getThreadPid());
+
         Thread t1 = new Thread(() -> {
             System.out.println(Thread.currentThread().getName() + " start running...");
             //等待 100 个小时
