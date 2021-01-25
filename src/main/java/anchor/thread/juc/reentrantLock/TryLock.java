@@ -1,6 +1,6 @@
-package anchor.thread.reentrantLock;
+package anchor.thread.juc.reentrantLock;
 
-import anchor.util.CommonUtil;
+import anchor.thread.util.CommonUtil;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;

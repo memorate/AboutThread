@@ -1,6 +1,6 @@
-package anchor.thread.semaphore;
+package anchor.thread.juc.semaphore;
 
-import anchor.util.CommonUtil;
+import anchor.thread.util.CommonUtil;
 
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;

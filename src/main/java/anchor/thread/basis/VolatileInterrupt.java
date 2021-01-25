@@ -1,6 +1,6 @@
 package anchor.thread.basis;
 
-import anchor.util.CommonUtil;
+import anchor.thread.util.CommonUtil;
 
 import java.util.concurrent.TimeUnit;
 

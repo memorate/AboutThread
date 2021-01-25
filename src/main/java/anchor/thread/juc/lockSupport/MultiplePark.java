@@ -1,6 +1,6 @@
-package anchor.thread.lockSupport;
+package anchor.thread.juc.lockSupport;
 
-import anchor.util.CommonUtil;
+import anchor.thread.util.CommonUtil;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;

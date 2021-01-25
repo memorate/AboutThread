@@ -1,6 +1,6 @@
-package anchor.thread.condition;
+package anchor.thread.juc.condition;
 
-import anchor.util.CommonUtil;
+import anchor.thread.util.CommonUtil;
 
 import java.util.LinkedList;
 import java.util.concurrent.locks.Condition;

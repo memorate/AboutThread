@@ -1,15 +1,19 @@
-package anchor.thread.reentrantLock;
+package anchor.thread.juc.reentrantLock;
 
-import anchor.util.CommonUtil;
+import anchor.thread.util.CommonUtil;
 
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author Anchor
  */
-public class ReentrantLockSample {
-    private static int num = 0;
-    final static ReentrantLock LOCK = new ReentrantLock();
+public class FairLock {
+
+    /**
+     * 公平锁，先到先得
+     * 哪个线程先启动，哪个线程首先获得锁
+     */
+    final static ReentrantLock LOCK = new ReentrantLock(true);
 
     public static void main(String[] args) throws InterruptedException {
         System.out.println(CommonUtil.getThreadPid());
@@ -22,21 +26,6 @@ public class ReentrantLockSample {
         t1.join();
         t2.join();
         t3.join();
-        System.out.println(num);
-    }
-
-    /**
-     * 可重入，同一个线程可多次获得同一把锁
-     */
-    static void plus(){
-        LOCK.lock();
-        LOCK.lock();
-        try {
-            num++;
-        }finally {
-            LOCK.unlock();
-            LOCK.unlock();
-        }
     }
 
     static class CustomThread extends Thread {
@@ -45,8 +34,11 @@ public class ReentrantLockSample {
         @Override
         public void run() {
             System.out.println(this.getName() + " start running...");
-            for (int i = 0; i < 1000; i++) {
-                plus();
+            LOCK.lock();
+            try {
+                System.out.println(Thread.currentThread().getName() + " get the lock.");
+            } finally {
+                LOCK.unlock();
             }
         }
     }
