@@ -33,7 +33,7 @@ import java.util.concurrent.locks.LockSupport;
  *         thread.start();
  *     }
  */
-public class LockSupportSample {
+public class Sample {
 
     public static void main(String[] args) throws InterruptedException {
         System.out.println("pid: " + CommonUtil.getThreadPid());

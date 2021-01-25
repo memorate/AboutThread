@@ -36,7 +36,7 @@ import java.util.concurrent.TimeUnit;
  *
  *      解决方案见下述代码
  */
-public class SemaphoreSample {
+public class Sample {
 
     static Semaphore semaphore = new Semaphore(3);
 

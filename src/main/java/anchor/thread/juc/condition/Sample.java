@@ -13,7 +13,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * 2.Condition 由 ReentrantLock 对象调用 newCondition()创建
  * 3.调用 Condition 的方法前需先获取该对象关联的 ReentrantLock 锁
  */
-public class ConditionSample {
+public class Sample {
 
     final static ReentrantLock LOCK = new ReentrantLock();
     /**
