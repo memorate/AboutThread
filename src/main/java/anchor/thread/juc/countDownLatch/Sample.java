@@ -33,6 +33,7 @@ public class Sample {
         t1.start();
         t2.start();
         t3.start();
+        //main 线程会等 t1、t2、t3 都结束才会继续往下执行
         latch.await();
         System.out.println("main thread over,count = " + latch.getCount());
     }
