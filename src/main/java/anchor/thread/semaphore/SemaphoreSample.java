@@ -43,9 +43,8 @@ public class SemaphoreSample {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("pid: " + CommonUtil.getThreadPid());
 
-        for (int i = 0; i < 10; i++) {
-            CustomThread thread = new CustomThread("t" + (i + 1));
-            thread.start();
+        for (int i = 1; i <= 10; i++) {
+            new CustomThread("t" + i).start();
         }
     }
 
