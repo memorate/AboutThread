@@ -8,9 +8,9 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author Anchor
  *
- * CountDownLatch(闭锁)，作用与 Thread 类中的 join() 类似，但是 CountDownLatch 可以控制线程的数量。
+ * CountDownLatch(闭锁)，它可以使一个线程在等待另外一些线程完成各自的工作后再继续执行。
  *
- * new CountDownLatch 类时会指定一个参数 count 的大小，调用 await() 会使当前线程进入等待状态，直到 count 的大小为0。
+ * new CountDownLatch 时会指定参数 count 的大小，调用 await() 会使当前线程进入等待状态，直到 count 的大小为 0 时，线程才会继续执行。
  * 调用 countDown() 会使 count 减一。
  *
  * 有两个 await() 方法：
@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class Sample {
 
-    static CountDownLatch latch = new CountDownLatch(3);
+    final static CountDownLatch LATCH = new CountDownLatch(3);
 
     public static void main(String[] args) throws InterruptedException {
         System.out.println(CommonUtil.getThreadPid());
@@ -34,8 +34,8 @@ public class Sample {
         t2.start();
         t3.start();
         //main 线程会等 t1、t2、t3 都结束才会继续往下执行
-        latch.await();
-        System.out.println("main thread over,count = " + latch.getCount());
+        LATCH.await();
+        System.out.println("main thread over,count = " + LATCH.getCount());
     }
 
     static class CustomThread extends Thread {
@@ -54,7 +54,7 @@ public class Sample {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
-                latch.countDown();
+                LATCH.countDown();
                 System.out.println(this.getName() + " exiting...");
             }
         }
