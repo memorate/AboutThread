@@ -13,15 +13,21 @@ import java.util.concurrent.TimeUnit;
  * CyclicBarrier(循环屏障)，它可以使多个线程互相等待，直到所有线程都达到了某个屏障点，它们才可以继续执行。
  * 例如：5个朋友一起吃饭，只有当大家都到了才可以开始吃；吃完只有当大家都坐上车了，车才可以开。
  *
- * CyclicBarrier 类内部维护了两个参数 parties 和 count。new CyclicBarrier 时指定 parties 的大小，并将 parties 的值赋给 count。
+ * CyclicBarrier 类内部维护了两个 int 类型的参数 parties 和 count。new CyclicBarrier 时指定 parties 的大小，并将 parties 的值赋给 count。
  *   每当 await() 被调用时：当前线程进入等待状态，并且 count 减一
- *   当 count 为 0 时：唤醒所有线程，并再次将 parties 的值赋给 count(因此叫作循环屏障，可以循环多次使用)
+ *   当 count 减为 0 时：唤醒所有线程，并再次将 parties 的值赋给 count(因此叫作循环屏障，可以循环多次使用)
  *
+ * CyclicBarrier 类有两个构造方法：
+ *  1.CyclicBarrier(int parties)
+ *  2.CyclicBarrier(int parties, Runnable barrierAction)
+ *    parties - 需要互相等待的线程数量
+ *    barrierAction - 在屏障打开前，由最后一个进入屏障的线程执行的自定义操作
  */
 public class Sample {
 
-    final static CyclicBarrier BARRIER = new CyclicBarrier(5);
-    final static Random RANDOM = new Random();
+    private final static CyclicBarrier BARRIER = new CyclicBarrier(5,
+            () -> System.out.println(Thread.currentThread().getName() + ": 我是最后一个，我准备好了"));
+    private final static Random RANDOM = new Random();
 
     public static void main(String[] args) {
         System.out.println(CommonUtil.getThreadPid());
@@ -59,7 +65,7 @@ public class Sample {
 
         /**
          * 模拟五个朋友吃完饭开车回家
-         * 同 eat()，只是为了验证 CyclicBarrier 可以循环使用
+         * 流程与 eat() 相同。写此方法只是为了验证 CyclicBarrier 可以循环使用
          */
         private void drive() {
             long leave = System.currentTimeMillis(), finished, startOff;
