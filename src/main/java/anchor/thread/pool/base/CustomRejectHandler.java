@@ -16,7 +16,8 @@ public class CustomRejectHandler implements RejectedExecutionHandler {
     @Override
     public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
         System.out.println("Queue size = " + executor.getQueue().size() +
-                ",task num = " + executor.getTaskCount() +
-                "ignore task = " + r.toString());
+                ", active thread num = " + executor.getActiveCount() +
+                ", task num = " + executor.getTaskCount() +
+                ", ignore task = " + r.toString());
     }
 }
