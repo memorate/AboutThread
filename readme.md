@@ -9,3 +9,11 @@ a.修饰示例方法。对当前实例加锁
 b.修饰静态方法。对类对象加锁  
 c.修饰代码块。对指定对象(实例或类对象)加锁  
 synchronized默认已经实现volatile的功能，它是互斥锁、可重入锁、不可中断锁、非公平锁。  
+**4.阻塞队列**  
+a.ArrayBlockingQueue，基于数组结构的有界队列，按照先进先出进行排序  
+b.LinkedBlockingQueue，基于链表结构的有界队列，按照先进先出进行排序，默认大小为Integer.MAX_VALUE。吞吐量高于ArrayBlockingQueue  
+c.LinkedBlockingDeque，基于双链表结构的有界队列，按照先进先出进行排序，默认大小为Integer.MAX_VALUE。
+d.LinkedTransferQueue，
+d.SynchronousQueue，不储存元素，每个插入操作必须等到另一个线程调用移除操作，否则插入操作一直阻塞。吞吐量高于LinkedBlockingQueue
+e.PriorityQueue，优先级队列，进入队列的元素按照优先级进行排序
+f.DelayQueue，

@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
  *  3.long keepAliveTime —— 空闲线程(超过 corePoolSize 的线程)的最大存活时间
  *  4.TimeUnit unit —— keepAliveTime参数的时间单位
  *  5.BlockingQueue<Runnable> workQueue —— 存放任务的阻塞队列，常用的阻塞队列有
- *    ArrayBolckingQueue、LinkedBlockingQueue、SynchronousQueue、PriorityQueue
+ *    ArrayBlockingQueue、LinkedBlockingQueue、SynchronousQueue、PriorityQueue
  *  6.ThreadFactory threadFactory —— 创建线程的工厂
  *  7.RejectedExecutionHandler handler —— 拒绝策略，当线程池中线程数超过 maximumPoolSize 时，对新添加的任务执行拒绝策略。
  *    ThreadPoolExecutor 中有四种拒绝策略 CallerRunsPolicy、AbortPolicy、DiscardPolicy、DiscardOldestPolicy。
