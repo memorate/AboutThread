@@ -3,15 +3,21 @@ package anchor.thread.pool;
 import anchor.thread.pool.base.CustomFactory;
 import anchor.thread.util.CommonUtil;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * @author Anchor
  *
- * SingleThreadExecutor
+ * SingleThreadExecutor，内部使用 ThreadPoolExecutor，参数如下：
+ *
+ *  new ThreadPoolExecutor(
+ *                 1,
+ *                 1,
+ *                 0L,
+ *                 TimeUnit.MILLISECONDS,
+ *                 new LinkedBlockingQueue<Runnable>(),
+ *                 Executors.defaultThreadFactory()
+ *   );
  *
  */
 public class SinglePool {

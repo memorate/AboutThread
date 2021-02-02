@@ -73,20 +73,30 @@ public class Pool {
                 new LinkedBlockingQueue<>(5),
                 new CustomFactory(),
                 new CustomRejectHandler()
-        ){
+        ) {
+            private long start = 0L;
+
+            //可以复写 beforeExecute()、afterExecute()、terminated() 方法，来实现自定义的 线程执行前、线程执行后、线程池关闭 操作
             @Override
             protected void beforeExecute(Thread t, Runnable r) {
+                start = System.currentTimeMillis();
+                System.out.println(t.getName() + ": start running...");
+                //必须在方法最后一行执行 super.beforeExecute(t, r)
                 super.beforeExecute(t, r);
             }
 
             @Override
             protected void afterExecute(Runnable r, Throwable t) {
+                //必须在方法第一行执行 super.afterExecute(r, t)
                 super.afterExecute(r, t);
+                System.out.println(Thread.currentThread().getName() + ": finished working, elapse time = " + (System.currentTimeMillis() - start));
             }
 
             @Override
             protected void terminated() {
+                //必须在方法中任意位置执行 super.terminated()
                 super.terminated();
+                System.out.println("Pool had terminated.");
             }
         };
     }
@@ -94,15 +104,15 @@ public class Pool {
     static class Task implements Runnable {
         @Override
         public void run() {
-            long start = System.currentTimeMillis();
-            System.out.println(Thread.currentThread().getName() + ": start running...");
+//            long start = System.currentTimeMillis();
+//            System.out.println(Thread.currentThread().getName() + ": start running...");
             try {
                 //随机睡眠 [1, 5] 秒
                 TimeUnit.SECONDS.sleep(new Random().nextInt(5) % (5 - 1 + 1) + 1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println(Thread.currentThread().getName() + ": finished working, elapse time = " + (System.currentTimeMillis() - start));
+//            System.out.println(Thread.currentThread().getName() + ": finished working, elapse time = " + (System.currentTimeMillis() - start));
             LATCH.countDown();
         }
 
