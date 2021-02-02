@@ -13,13 +13,14 @@ import java.util.concurrent.TimeUnit;
  *
  * FixedThreadPool，内部使用 ThreadPoolExecutor，参数如下：
  *
- *   new ThreadPoolExecutor(nThreads,
- *                          nThreads,
- *                          0L,
- *                          TimeUnit.MILLISECONDS,
- *                          new LinkedBlockingQueue<Runnable>(),
- *                          Executors.defaultThreadFactory(),
- *                          new ThreadPoolExecutor.AbortPolicy()
+ *   new ThreadPoolExecutor(
+ *                  nThreads,
+ *                  nThreads,
+ *                  0L,
+ *                  TimeUnit.MILLISECONDS,
+ *                  new LinkedBlockingQueue<Runnable>(),
+ *                  Executors.defaultThreadFactory(),
+ *                  new ThreadPoolExecutor.AbortPolicy()
  *   );
  *
  *   1.线程个数固定为 nThreads
