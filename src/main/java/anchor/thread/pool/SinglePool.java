@@ -16,7 +16,8 @@ import java.util.concurrent.*;
  *                 0L,
  *                 TimeUnit.MILLISECONDS,
  *                 new LinkedBlockingQueue<Runnable>(),
- *                 Executors.defaultThreadFactory()
+ *                 Executors.defaultThreadFactory(),
+ *                 new ThreadPoolExecutor.AbortPolicy()
  *   );
  *
  *  1.有且只有一个线程执行任务
