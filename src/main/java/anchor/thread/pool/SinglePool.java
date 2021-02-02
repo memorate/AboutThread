@@ -19,6 +19,9 @@ import java.util.concurrent.*;
  *                 Executors.defaultThreadFactory()
  *   );
  *
+ *  1.有且只有一个线程执行任务
+ *  2.所有任务按先进先出的顺序执行
+ *  3.当当前线程出现异常后，线程池会自动创建一个新的线程，始终保持池中只有一个线程存活
  */
 public class SinglePool {
 
