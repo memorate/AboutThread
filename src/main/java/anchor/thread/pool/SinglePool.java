@@ -8,7 +8,7 @@ import java.util.concurrent.*;
 /**
  * @author Anchor
  *
- * SingleThreadExecutor，内部使用 ThreadPoolExecutor，参数如下：
+ * SingleThreadExecutor，底层使用 ThreadPoolExecutor，参数如下：
  *
  *  new ThreadPoolExecutor(
  *                 1,

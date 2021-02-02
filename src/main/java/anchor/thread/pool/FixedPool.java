@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author Anchor
  *
- * FixedThreadPool，内部使用 ThreadPoolExecutor，参数如下：
+ * FixedThreadPool，底层使用 ThreadPoolExecutor，参数如下：
  *
  *   new ThreadPoolExecutor(
  *                  nThreads,
@@ -23,8 +23,8 @@ import java.util.concurrent.TimeUnit;
  *                  new ThreadPoolExecutor.AbortPolicy()
  *   );
  *
- *   1.线程个数固定为 nThreads
- *   2.LinkedBlockingQueue 的默认大小为 Integer.MAX_VALUE，任务过多时可能会导致 OOM
+ *   1.线程个数固定为 nThreads，最大线程数也为 nThreads，keepAliveTime 为 0。意味着线程池创建之后只能使用固定数量的线程
+ *   2.阻塞队列使用 LinkedBlockingQueue，默认大小为 Integer.MAX_VALUE，任务过多时可能会导致 OOM
  */
 public class FixedPool {
 

@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
  * 七个参数：
  *  1.int corePoolSize —— 核心线程数
  *  2.int maximumPoolSize —— 最大线程数
- *  3.long keepAliveTime —— 空闲线程(超过 corePoolSize 的线程)的最大存活时间
+ *  3.long keepAliveTime —— 非核心线程(超过 corePoolSize 的线程)的最大存活时间
  *  4.TimeUnit unit —— keepAliveTime参数的时间单位
  *  5.BlockingQueue<Runnable> workQueue —— 存放任务的阻塞队列，常用的阻塞队列有
  *    ArrayBlockingQueue、LinkedBlockingQueue、SynchronousQueue、PriorityQueue
