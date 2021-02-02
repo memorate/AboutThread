@@ -38,6 +38,13 @@ import java.util.concurrent.TimeUnit;
  *  二、当任务正在执行时：
  *   1.当 workQueue 中任务已经全部执行后，部分线程陆续开始空闲，非核心线程会在空闲后的 keepAliveTime 时间后自行销毁
  *   2.核心线程是否销毁取决于 allowCoreThreadTimeOut 参数，默认为 false(空闲时不销毁)
+ *
+ * 线程数量设置：
+ *   Ncpu = CUP的数量
+ *   Ucpu = 目标CPU的使用率，0 <= Ucpu <= 1
+ *   W/C = 等待时间与计算时间的比例
+ *   为保存处理器达到期望的使用率，最有的线程池的大小等于：
+ *    Nthreads = Ncpu × Ucpu × (1+W/C)
  */
 public class Pool {
     private final static CountDownLatch LATCH = new CountDownLatch(10);
@@ -66,7 +73,22 @@ public class Pool {
                 new LinkedBlockingQueue<>(5),
                 new CustomFactory(),
                 new CustomRejectHandler()
-        );
+        ){
+            @Override
+            protected void beforeExecute(Thread t, Runnable r) {
+                super.beforeExecute(t, r);
+            }
+
+            @Override
+            protected void afterExecute(Runnable r, Throwable t) {
+                super.afterExecute(r, t);
+            }
+
+            @Override
+            protected void terminated() {
+                super.terminated();
+            }
+        };
     }
 
     static class Task implements Runnable {
