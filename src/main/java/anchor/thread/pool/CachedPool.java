@@ -21,7 +21,7 @@ import java.util.concurrent.*;
  *   );
  *
  *  1.coreSize 为 0，maximumPoolSize 为 Integer.MAX_VALUE，说明没有核心线程，且线程数没有上限，空闲线程的存活时间为 60 秒
- *  2.Cached 这里可以理解为临时，所有线程基本是临时创建，用完过时即毁
+ *  2.CachedThreadPool 适合用来执行大量短耗时的任务(线程可以复用率高)，但当创建线程数量过多时，可能会 OOM
  */
 public class CachedPool {
     private final static CountDownLatch LATCH = new CountDownLatch(50);
