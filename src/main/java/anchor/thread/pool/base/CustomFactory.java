@@ -29,6 +29,7 @@ public class CustomFactory implements ThreadFactory {
         thread.setPriority(Thread.NORM_PRIORITY);
         //设置名字为 custom-thread-N
         thread.setName("Anchor-worker-" + counter.getAndIncrement());
+        System.out.println("Build a thread in factory, thread name = " + thread.getName());
         return thread;
     }
 }
